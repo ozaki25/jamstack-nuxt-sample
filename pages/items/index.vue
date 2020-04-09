@@ -1,11 +1,11 @@
 <template>
   <b-container class="bv-example-row">
-    <b-card header="新着記事一覧">
-      <ul>
-        <li v-for="item in items" :key="item.id">
+    <b-card header="新着記事一覧" no-body>
+      <b-list-group flush>
+        <b-list-group-item v-for="item in items" :key="item.id" href="#">
           {{ item.title }}
-        </li>
-      </ul>
+        </b-list-group-item>
+      </b-list-group>
     </b-card>
   </b-container>
 </template>
@@ -16,7 +16,7 @@ import axios from 'axios'
 export default {
   async asyncData() {
     const { data } = await axios.get('https://qiita.com/api/v2/items')
-    const items = data.map(({ id, title, url }) => ({ id, title, url }))
+    const items = data.map((item) => ({ id: item.id, title: item.title }))
     return { items }
   }
 }
