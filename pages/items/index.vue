@@ -16,7 +16,8 @@ import axios from 'axios'
 export default {
   async asyncData() {
     const { data } = await axios.get('https://qiita.com/api/v2/items')
-    return { items: data }
+    const items = data.map(({ id, title, url }) => ({ id, title, url }))
+    return { items }
   }
 }
 </script>
