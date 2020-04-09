@@ -14,10 +14,7 @@ export default {
     if (payload) return { item: payload }
 
     const { data } = await axios.get(
-      `https://qiita.com/api/v2/items/${params.id}`,
-      {
-        headers: { Authorization: `Bearer ${process.env.QIITA_ACCESS_TOKEN}` }
-      }
+      `https://qiita.com/api/v2/items/${params.id}`
     )
     const item = { id: data.id, title: data.title, body: data.rendered_body }
     return { item }

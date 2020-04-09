@@ -1,7 +1,4 @@
 import axios from 'axios'
-import dotenv from 'dotenv'
-
-dotenv.config()
 
 export default {
   mode: 'universal',
@@ -68,9 +65,7 @@ export default {
   },
   generate: {
     async routes() {
-      const { data } = await axios.get('https://qiita.com/api/v2/items', {
-        headers: { Authorization: `Bearer ${process.env.QIITA_ACCESS_TOKEN}` }
-      })
+      const { data } = await axios.get('https://qiita.com/api/v2/items')
       return data.map((item) => ({ route: `/items/${item.id}`, payload: item }))
     }
   }
