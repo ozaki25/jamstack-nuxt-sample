@@ -10,7 +10,9 @@
 import axios from 'axios'
 
 export default {
-  async asyncData({ params }) {
+  async asyncData({ params, payload }) {
+    if (payload) return { item: payload }
+
     const { data } = await axios.get(
       `https://qiita.com/api/v2/items/${params.id}`,
       {
