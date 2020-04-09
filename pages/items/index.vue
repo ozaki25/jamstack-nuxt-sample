@@ -2,7 +2,11 @@
   <b-container class="bv-example-row">
     <b-card header="新着記事一覧" no-body>
       <b-list-group flush>
-        <b-list-group-item v-for="item in items" :key="item.id" href="#">
+        <b-list-group-item
+          v-for="item in items"
+          :key="item.id"
+          :to="`/items/${item.id}`"
+        >
           {{ item.title }}
         </b-list-group-item>
       </b-list-group>
