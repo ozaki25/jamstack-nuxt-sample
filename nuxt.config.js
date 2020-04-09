@@ -1,3 +1,8 @@
+import axios from 'axios'
+import dotenv from 'dotenv'
+
+dotenv.config()
+
 export default {
   mode: 'universal',
   /*
@@ -60,5 +65,14 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+  generate: {
+    async routes() {
+      const { data } = await axios.get('https://qiita.com/api/v2/items', {
+        headers: { Authorization: `Bearer ${process.env.QIITA_ACCESS_TOKEN}` }
+      })
+      const ids = data.map((item) => item.id)
+      return ids.map((id) => `/items/${id}`)
+    }
   }
 }

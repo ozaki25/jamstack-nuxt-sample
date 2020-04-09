@@ -12,7 +12,10 @@ import axios from 'axios'
 export default {
   async asyncData({ params }) {
     const { data } = await axios.get(
-      `https://qiita.com/api/v2/items/${params.id}`
+      `https://qiita.com/api/v2/items/${params.id}`,
+      {
+        headers: { Authorization: `Bearer ${process.env.QIITA_ACCESS_TOKEN}` }
+      }
     )
     const item = { id: data.id, title: data.title, body: data.rendered_body }
     return { item }
