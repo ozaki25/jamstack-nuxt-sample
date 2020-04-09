@@ -1,6 +1,6 @@
 <template>
   <b-container class="bv-example-row">
-    <b-card header="item.title">
+    <b-card :header="item.title">
       <span v-html="item.body"></span>
     </b-card>
   </b-container>
