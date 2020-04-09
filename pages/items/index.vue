@@ -11,15 +11,12 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  data() {
-    return {
-      items: [
-        { id: 1, title: 'test' },
-        { id: 2, title: 'test' },
-        { id: 3, title: 'test' }
-      ]
-    }
+  async asyncData() {
+    const { data } = await axios.get('https://qiita.com/api/v2/items')
+    return { items: data }
   }
 }
 </script>
